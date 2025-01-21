@@ -11,6 +11,7 @@ export default function List() {
     <ul className="movie-list">
       {dados.map((filmes: MovieType) => (
         <MovieCard 
+        key={filmes.id}
         movieType= {filmes} />
       ))}
     </ul>
