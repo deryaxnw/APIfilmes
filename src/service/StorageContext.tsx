@@ -6,12 +6,14 @@ export const Usecontext = createContext<any>(null);
 
 export const StorageContext = ({ children }: StorageContextProps) => {
   const [dados, setDados] = useState<MovieType[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+
 
   useEffect(() => {
     getDados();
   }, []);
-  const getDados = () => {
-    axios({
+  const getDados  = async () => {
+    await axios({
       method: "get",
       url: "https://api.themoviedb.org/3/discover/movie",
       params: {
@@ -22,11 +24,13 @@ export const StorageContext = ({ children }: StorageContextProps) => {
       setDados(response.data.results);
       console.log(response);
     });
+
+    setIsLoading(false);
   };
 
   return (
     <>
-      <Usecontext.Provider value={{ dados }}>{children}</Usecontext.Provider>
+      <Usecontext.Provider value={{ dados , isLoading}}>{children}</Usecontext.Provider>
     </>
   );
 };
