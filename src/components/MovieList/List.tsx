@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import "./index.scss";
-import { MovieType, Usecontext } from "../../service/StorageContext";
-
-
+import { Usecontext } from "../../service/StorageContext";
+import { MovieType } from "../../types";
+import MovieCard from "../MovieCard/MovieCard";
 
 export default function List() {
   const { dados } = useContext(Usecontext);
@@ -10,14 +10,8 @@ export default function List() {
   return (
     <ul className="movie-list">
       {dados.map((filmes: MovieType) => (
-        <li key={filmes.id} className="movie-card">
-          <p>{filmes.title}</p>
-          <p className="description">{filmes.overview}</p>
-          <img src={`https://image.tmdb.org/t/p/original${filmes.poster_path}`} alt="" />
-          <p>
-            {filmes.vote_average}
-          </p>
-        </li>
+        <MovieCard 
+        movieType= {filmes} />
       ))}
     </ul>
   );

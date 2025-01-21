@@ -1,21 +1,9 @@
-import { createContext, useState , ReactNode, useEffect} from "react";
+import { createContext, useState , useEffect} from "react";
 import axios from 'axios'
+import { MovieType, StorageContextProps } from "../types";
 
 export const Usecontext = createContext<any>(null);
 
-
-interface StorageContextProps {
-    children: ReactNode;
-}
-
-export interface MovieType {
-    id: number,
-    title: string,
-    poster_path: string,
-    overview: string,
-    vote_average: number
-
-}
 
 
 export const StorageContext = ({children} : StorageContextProps) => {
