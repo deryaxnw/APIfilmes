@@ -1,6 +1,6 @@
 import { MovieType } from "../../types";
 import Star from "../StarRating/Star";
-import './index.scss'
+import "./index.scss";
 
 export interface Props {
   movieType: MovieType;
@@ -19,14 +19,18 @@ export default function MovieCard(props: Props) {
       </div>
       <div className="movie-infos">
         <p className="movie-title">{movie.title}</p>
-        <Star rating={movie.vote_average}/>
+        {movie.vote_average > 0 && <Star rating={movie.vote_average} />}
         <div className="hiden-content">
-          <p className="description">{movie.overview}</p>
+          {movie.overview && (
+            <p className="description">
+              {movie.overview.length > 100
+                ? `${movie.overview.substring(0, 100)}...`
+                : movie.overview}
+            </p>
+          )}
           <button className="btn-default">Ver mais</button>
         </div>
       </div>
-
-      
     </li>
   );
 }
