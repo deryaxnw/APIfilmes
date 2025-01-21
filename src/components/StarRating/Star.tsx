@@ -1,3 +1,8 @@
+import { RiStarSFill } from "react-icons/ri";
+import { FaRegStar } from "react-icons/fa";
+import './index.scss'
+
+
 export interface Props {
     rating: number;
 }
@@ -19,8 +24,16 @@ export default function Star(props: Props) {
 
 
     return (
-       <div>
+       <div className="movie-rating">
+           {emptyStars.map(index => (
+               <RiStarSFill key={index} />
+            
+ 
+         ))}
+        {fullStars.map(index => (
+            <FaRegStar key={index} />
 
+        ))}
        </div>
     )
 }
